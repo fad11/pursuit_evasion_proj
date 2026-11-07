@@ -1,0 +1,21 @@
+import time
+
+import numpy as np
+
+from pybullet_env import PursuitEvasionEnv
+
+
+def main() -> None:
+    env = PursuitEvasionEnv(render_mode="GUI", gravity=0)
+    try:
+        env.reset()
+        action = np.array([-1, 0.0], dtype=np.float32)
+        for _ in range(200):
+            env.step(action)
+            time.sleep(1 / 240)
+    finally:
+        env.close()
+
+
+if __name__ == "__main__":
+    main()

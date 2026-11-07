@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<mujoco>
+  <worldbody>
+    <geom name="floor" type="plane" size="20 20 0.1" rgba="0.8 0.8 0.8 1"/>
+    <camera name="top_down" pos="0 0 20" euler="0 0 0"/>
+    <body name="pursuer" pos="0 0 0.1">
+      <freejoint/>
+      <geom type="sphere" size="0.15" rgba="1 0 0 1" mass="1.0"/>
+    </body>
+    <body name="evader" pos="1 1 0.1">
+      <freejoint/>
+      <geom type="sphere" size="0.15" rgba="0 1 0 1" mass="1.0"/>
+    </body>
+  </worldbody>
+</mujoco>

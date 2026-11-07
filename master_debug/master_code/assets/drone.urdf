@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot name="drone">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.00208333" ixy="0" ixz="0" iyy="0.00770833" iyz="0" izz="0.009375"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.3 0.15 0.05"/>
+      </geometry>
+      <material name="drone_gray">
+        <color rgba="0.25 0.3 0.35 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.3 0.15 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "**/.jj": false,
+    "**/flutter/ephemeral": false,
+    "**/Flutter/ephemeral": false,
+    "**/.symlinks": false,
+    "**/.plugin_symlinks": false
+  }
+}
