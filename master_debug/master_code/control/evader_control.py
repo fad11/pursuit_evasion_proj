@@ -10,15 +10,20 @@ class BaseEvaderController:
 
 
 class RandomEvaderController(BaseEvaderController):
+    def __init__(self) -> None:
+        self.rng = np.random.default_rng()
+
+    def reset(self, seed: int | None = None) -> None:
+        self.rng = np.random.default_rng(seed)
+
     def get_action(self, obs: np.ndarray) -> np.ndarray:
-        return np.random.uniform(low=-1.0, high=1.0, size=2).astype(np.float32)
+        return self.rng.uniform(low=-1.0, high=1.0, size=2).astype(np.float32)
 
 
 class PureEvaderController(BaseEvaderController):
     def get_action(self, obs: np.ndarray) -> np.ndarray:
-        line_of_sight = float(obs[1])
         return np.array(
-            [-np.sin(line_of_sight), -np.cos(line_of_sight)],
+            [-float(obs[1]), -float(obs[2])],
             dtype=np.float32,
         )
 
@@ -31,9 +36,8 @@ class ManeuveringEvaderController(PureEvaderController):
         self.step = 0
 
     def get_action(self, obs: np.ndarray) -> np.ndarray:
-        line_of_sight = float(obs[1])
         away = np.array(
-            [-np.sin(line_of_sight), -np.cos(line_of_sight)],
+            [-float(obs[1]), -float(obs[2])],
             dtype=np.float32,
         )
         lateral = np.array([-away[1], away[0]], dtype=np.float32)

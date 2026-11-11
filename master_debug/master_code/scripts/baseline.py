@@ -10,13 +10,14 @@ from envs.pybullet_env import PursuitEvasionEnv
 
 N_EPISODES = 50
 SEED = 0
+LINEAR_DAMPING = 0.1
 
 
 def main() -> None:
-    np.random.seed(SEED)
     env = PursuitEvasionEnv(
         render_mode="DIRECT",
         gravity=0.0,
+        linear_damping=LINEAR_DAMPING,
         evader_controller=RandomEvaderController(),
     )
     successes = 0
@@ -38,6 +39,7 @@ def main() -> None:
 
     success_rate = successes / N_EPISODES
     mean_episode_length = float(np.mean(episode_lengths))
+    print(f"Linear damping: {LINEAR_DAMPING}")
     print(f"Success rate: {successes}/{N_EPISODES} ({success_rate:.1%})")
     print(f"Mean episode length: {mean_episode_length:.1f} steps")
 
