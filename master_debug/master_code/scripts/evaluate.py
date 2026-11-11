@@ -1,12 +1,15 @@
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import time
 
 import numpy as np
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 
-from control import RandomEvaderController
-from pybullet_env import PursuitEvasionEnv
+from control.evader_control import RandomEvaderController
+from envs.pybullet_env import PursuitEvasionEnv
 
 
 def make_env() -> PursuitEvasionEnv:
@@ -37,7 +40,7 @@ def main() -> None:
             while not done and step < 1000:
                 action, _ = model.predict(obs, deterministic=True)
                 obs, _, dones, _ = env.step(action)
-                time.sleep(1 / 60)
+                time.sleep(1 / 240)
                 done = bool(np.asarray(dones).reshape(-1)[0])
                 step += 1
 

@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import time
 from pathlib import Path
 
@@ -14,7 +18,7 @@ def main():
         p.setGravity(0, 0, 0, physicsClientId=client)
         p.setAdditionalSearchPath(pybullet_data.getDataPath(), physicsClientId=client)
         p.loadURDF("plane.urdf", [0, 0, 0], physicsClientId=client)
-        urdf_path = Path(__file__).resolve().parent / "assets" / "drone.urdf"
+        urdf_path = Path(__file__).resolve().parent.parent / "assets" / "drone.urdf"
         p.loadURDF(str(urdf_path), [0, 0, 0], physicsClientId=client)
 
         for _ in range(100):

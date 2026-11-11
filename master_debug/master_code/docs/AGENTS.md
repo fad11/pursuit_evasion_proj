@@ -12,9 +12,9 @@
 - **Drift Prevention**: After every `p.stepSimulation()`, forcibly reset the Y position, Y velocity, Roll, and Yaw to exactly `0` for all bodies.
 - **URDF**: Load `assets/drone.urdf` for both agents.
 - **Testing**: Tests must use `p.connect(p.DIRECT)`. Use `1e-5` in denominators to prevent division-by-zero.
-- **Arena Bounds**: Use `self.np_random.uniform(min, max)` to sample spawn positions. Ensure Z coordinates respect `z_range` (min 0.0). Agents must not spawn within 2.0 meters of each other.
+- **Arena**: The plane is infinite, with no arena bounds, walls, out-of-bounds penalties, or position clamping. Keep spawn positions at least 3.0 meters apart.
 
-## RL Environment Rules (`pybullet_env.py`)
+## RL Environment Rules (`envs/pybullet_env.py`)
 
 - Must inherit from `gymnasium.Env`.
 - Accept `render_mode` and `gravity` in `__init__`.
@@ -40,5 +40,5 @@
 
 ## Rules Updates
 
-- Default `x_range` is `(-5.0, 5.0)`, `z_range` is `(0.0, 5.0)`, `max_steps` is `1000`.
+- `max_steps` is `1000`; the observation space shape is `(8,)`.
 - The minimum spawn distance in `_sample_spawn_positions` must be `3.0`.

@@ -1,9 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import time
 
 import numpy as np
 
 from control.evader_control import CircularEvaderController
-from pybullet_env import PursuitEvasionEnv
+from envs.pybullet_env import PursuitEvasionEnv
 
 
 def main() -> None:
